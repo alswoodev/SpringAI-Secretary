@@ -9,10 +9,10 @@ services:
     environment:
       MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: springai
-      MARIADB_USER: root
-      MARIADB_PASSWORD: root1234
+      MARIADB_USER: user
+      MARIADB_PASSWORD: user1234
     ports:
-      - "3308:3308"
+      - "3308:3306"
     volumes:
       - mariadb-data:/var/lib/mysql
   app:
@@ -23,8 +23,8 @@ services:
       - mariadb
     environment:
       SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/springai
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root1234
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: user1234
 
 volumes:
   mariadb-data:
