@@ -8,7 +8,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "schedules", indexes = {
+@Table(name = "tasks", indexes = {
     @Index(name = "idx_user_date", columnList = "user_id, startDate"),
     @Index(name = "idx_type_status", columnList = "type, status")
 })
@@ -20,8 +20,8 @@ import java.time.LocalDateTime;
 public class Task extends BaseEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String scheduleId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long taskId;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

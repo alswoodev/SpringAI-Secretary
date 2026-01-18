@@ -18,8 +18,8 @@ import lombok.*;
 public class ShoppingItem extends BaseEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String itemId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long itemId;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -28,16 +28,12 @@ public class ShoppingItem extends BaseEntity {
     @Column(nullable = false, length = 200)
     private String itemName;
     
-    @Column(nullable = true)
+    @Column
     @Builder.Default
     private Integer quantity = 1;
     
     //@Column(length = 20)
     //private String category; // 식품, 생필품, 전자제품, etc.
-    
-    @Column(length = 20)
-    @Builder.Default
-    private String priority = "medium"; // high, medium, low
     
     @Column(length = 20, nullable = false)
     @Builder.Default
