@@ -1,7 +1,5 @@
 package com.spring.ai.basic.entity;
 
-import com.spring.ai.basic.entity.BaseEntity;
-import com.spring.ai.basic.entity.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Task extends BaseEntity {
+public class Task extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

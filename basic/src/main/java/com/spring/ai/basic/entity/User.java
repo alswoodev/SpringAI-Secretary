@@ -1,6 +1,5 @@
 package com.spring.ai.basic.entity;
 
-import com.spring.ai.basic.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User extends BaseEntity {
+public class User extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

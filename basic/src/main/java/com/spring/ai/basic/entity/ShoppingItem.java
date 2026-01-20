@@ -1,7 +1,5 @@
 package com.spring.ai.basic.entity;
 
-import com.spring.ai.basic.entity.BaseEntity;
-import com.spring.ai.basic.entity.User;
 import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ShoppingItem extends BaseEntity {
+public class ShoppingItem extends BaseEntity{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
