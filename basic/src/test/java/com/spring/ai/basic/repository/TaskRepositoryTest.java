@@ -13,7 +13,7 @@ import com.spring.ai.basic.entity.enums.task.*;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
 //import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,8 +51,8 @@ class TaskRepositoryTest {
                 .userId(testUser.getUserId())
                 .title("Task 1")
                 .description("Description 1")
-                .startDate(LocalDateTime.now())
-                .endDate(LocalDateTime.now().plusDays(1))
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(1))
                 .status(TaskStatus.SCHEDULED)
                 .build();
 
@@ -60,8 +60,8 @@ class TaskRepositoryTest {
                 .userId(testUser.getUserId())
                 .title("Task 2")
                 .description("Description 2")
-                .startDate(LocalDateTime.now().plusDays(1))
-                .endDate(LocalDateTime.now().plusDays(2))
+                .startDate(LocalDate.now().plusDays(1))
+                .endDate(LocalDate.now().plusDays(2))
                 .status(TaskStatus.COMPLETED)
                 .build();
 
@@ -84,8 +84,8 @@ class TaskRepositoryTest {
                 .userId(testUser.getUserId())
                 .title("High Priority Task")
                 .priority(TaskPriority.HIGH)
-                .startDate(LocalDateTime.now())
-                .endDate(LocalDateTime.now().plusDays(1))
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(1))
                 .status(TaskStatus.SCHEDULED)
                 .build();
 
@@ -93,8 +93,8 @@ class TaskRepositoryTest {
                 .userId(testUser.getUserId())
                 .title("Low Priority Task")
                 .priority(TaskPriority.LOW)
-                .startDate(LocalDateTime.now())
-                .endDate(LocalDateTime.now().plusDays(1))
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(1))
                 .status(TaskStatus.SCHEDULED)
                 .build();
 
@@ -113,7 +113,7 @@ class TaskRepositoryTest {
     @Test
     void testFindTaskByRange() {
         // given
-        LocalDateTime today = LocalDateTime.now();
+        LocalDate today = LocalDate.now();
         
         Task todayTask = Task.builder()
                 .userId(testUser.getUserId())

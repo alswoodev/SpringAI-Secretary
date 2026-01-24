@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import com.spring.ai.basic.entity.enums.task.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -36,10 +37,10 @@ public class Task extends BaseEntity{
     private String description;
     
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     
     @Column(nullable = false)
-    private LocalDateTime endDate;
+    private LocalDate endDate;
     
     @Column(length = 20, nullable = false)
     @Enumerated(EnumType.STRING)
@@ -54,8 +55,42 @@ public class Task extends BaseEntity{
     @Column(length = 20, nullable = false)
     @Enumerated(EnumType.STRING)
     @Builder.Default
-    private TaskStatus status = TaskStatus.SCHEDULED; // scheduled, completed, cancelled
+    private TaskStatus status = TaskStatus.SCHEDULED; // scheduled, completed, cancelled, undone
     
     @Column
     private LocalDateTime completedAt;
+
+    /**
+     * Static factory method to create a Task instance.
+     * - essential field validation: user, title, description, startDate, endDate
+     * - optional fields: type, priority, status are set via Builder.Default
+     */
+    public static Task createTask(String userId, String title, String description, LocalDate startDate, LocalDate endDate, TaskType type, TaskPriority priority) {
+        if( userId == null ) {
+            throw new IllegalArgumentException("User ID cannot be null");
+        }
+        if (title == null || title.isBlank()) {
+            throw new IllegalArgumentException("Title cannot be null or blank");
+        }
+        if (description == null) {
+            throw new IllegalArgumentException("Description cannot be null");
+        }
+        if (startDate == null || endDate == null) {
+            throw new IllegalArgumentException("StartDate and EndDate cannot be null");
+        }
+        if (startDate.isAfter(endDate)) {
+            throw new IllegalArgumentException("startDate must be before endDate");
+        }
+        
+        return Task.builder()
+                .userId(userId)
+                .title(title)
+                .description(description)
+                .startDate(startDate)
+                .endDate(endDate)
+                .type(type)
+                .priority(priority)
+                .status(TaskStatus.SCHEDULED)
+                .build();
+    }
 }

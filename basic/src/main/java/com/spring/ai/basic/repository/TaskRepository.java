@@ -1,6 +1,6 @@
 package com.spring.ai.basic.repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import com.spring.ai.basic.entity.Task;
@@ -22,8 +22,8 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     """)
     List<Task> findTask(
         @Param("userId") String userId,
-        @Param("from") LocalDateTime from,
-        @Param("to") LocalDateTime to,
+        @Param("from") LocalDate from,
+        @Param("to") LocalDate to,
         @Param("status") TaskStatus status
     );
 
