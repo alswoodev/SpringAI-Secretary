@@ -83,7 +83,7 @@ class TaskRepositoryTest {
         Task highPriorityTask = Task.builder()
                 .userId(testUser.getUserId())
                 .title("High Priority Task")
-                .priority(TaskPriority.HIGH)
+                .priority("HIGH")
                 .startDate(LocalDate.now())
                 .endDate(LocalDate.now().plusDays(1))
                 .status(TaskStatus.SCHEDULED)
@@ -92,7 +92,7 @@ class TaskRepositoryTest {
         Task lowPriorityTask = Task.builder()
                 .userId(testUser.getUserId())
                 .title("Low Priority Task")
-                .priority(TaskPriority.LOW)
+                .priority("LOW")
                 .startDate(LocalDate.now())
                 .endDate(LocalDate.now().plusDays(1))
                 .status(TaskStatus.SCHEDULED)
@@ -103,11 +103,11 @@ class TaskRepositoryTest {
         entityManager.flush();
 
         // when
-        List<Task> highPriorityTasks = taskRepository.findTaskWithPriority(testUser.getUserId(), TaskPriority.HIGH);
+        List<Task> highPriorityTasks = taskRepository.findTaskWithPriority(testUser.getUserId(), "HIGH");
 
         // then
         assertEquals(1, highPriorityTasks.size());
-        assertEquals(TaskPriority.HIGH, highPriorityTasks.get(0).getPriority());
+        assertEquals("HIGH", highPriorityTasks.get(0).getPriority());
     }
 
     @Test

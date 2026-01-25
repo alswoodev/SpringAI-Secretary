@@ -22,13 +22,13 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     """)
     List<Task> findTask(
         @Param("userId") String userId,
-        @Param("from") LocalDate from,
-        @Param("to") LocalDate to,
+        @Param("from") LocalDate startDate,
+        @Param("to") LocalDate endDate,
         @Param("status") TaskStatus status
     );
 
     @Query("SELECT t FROM Task t WHERE t.user.userId = :userId AND t.priority = :priority ORDER BY t.startDate ASC")
-    List<Task> findTaskWithPriority(@Param("userId") String userId, @Param("priority") TaskPriority priority);
+    List<Task> findTaskWithPriority(@Param("userId") String userId, @Param("priority") String priority);
 
     List<Task> findByUserUserId(String userId);
 

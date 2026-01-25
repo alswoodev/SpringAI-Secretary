@@ -42,17 +42,15 @@ public class Task extends BaseEntity{
     @Column(nullable = false)
     private LocalDate endDate;
     
-    @Column(length = 20, nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     @Builder.Default
-    private TaskType type = TaskType.EVENT; // meeting, task, reminder, event
+    private String type = "EVENT"; // meeting, task, reminder, event
     
     @Column(length = 20)
-    @Enumerated(EnumType.STRING)
     @Builder.Default
-    private TaskPriority priority = TaskPriority.MEDIUM; // high, medium, low
+    private String priority = "MEDIUM"; // high, medium, low
     
-    @Column(length = 20, nullable = false)
+    @Column(length = 20)
     @Enumerated(EnumType.STRING)
     @Builder.Default
     private TaskStatus status = TaskStatus.SCHEDULED; // scheduled, completed, cancelled, undone
@@ -65,7 +63,7 @@ public class Task extends BaseEntity{
      * - essential field validation: user, title, description, startDate, endDate
      * - optional fields: type, priority, status are set via Builder.Default
      */
-    public static Task createTask(String userId, String title, String description, LocalDate startDate, LocalDate endDate, TaskType type, TaskPriority priority) {
+    public static Task createTask(String userId, String title, String description, LocalDate startDate, LocalDate endDate, String type, String priority) {
         if( userId == null ) {
             throw new IllegalArgumentException("User ID cannot be null");
         }
