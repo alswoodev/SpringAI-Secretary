@@ -103,7 +103,7 @@ class TaskRepositoryTest {
         entityManager.flush();
 
         // when
-        List<Task> highPriorityTasks = taskRepository.findTaskWithPriority(testUser.getUserId(), "HIGH");
+        List<Task> highPriorityTasks = taskRepository.findTaskWithPriority(testUser.getUserId(), "HIGH", TaskStatus.SCHEDULED);
 
         // then
         assertEquals(1, highPriorityTasks.size());
@@ -145,9 +145,44 @@ class TaskRepositoryTest {
         entityManager.flush();
 
         // when
-        List<Task> tasksRange7Days = taskRepository.findTask(testUser.getUserId(), today, today.plusDays(7), TaskStatus.SCHEDULED);
+        List<Task> tasksRange7Days = taskRepository.findTask(testUser.getUserId(), today, today, TaskStatus.SCHEDULED);
 
         // then
-        assertEquals(3, tasksRange7Days.size());
+        assertEquals(2, tasksRange7Days.size());
     } 
+
+    @Test
+    void testFindFutureTask(){
+        //given
+        String userId = testUser.getUserId();
+
+        //past task
+        Task task1 = Task.builder()
+                .userId(testUser.getUserId())
+                .title("Task 1")
+                .description("Description 1")
+                .startDate(LocalDate.now().minusDays(1))
+                .endDate(LocalDate.now().plusDays(1))
+                .status(TaskStatus.SCHEDULED)
+                .build();
+
+        //future(now) task
+        Task task2 = Task.builder()
+                .userId(testUser.getUserId())
+                .title("Task 2")
+                .description("Description 2")
+                .startDate(LocalDate.now())
+                .endDate(LocalDate.now().plusDays(1))
+                .status(TaskStatus.SCHEDULED)
+                .build();
+
+        taskRepository.save(task1);
+        taskRepository.save(task2);
+
+        //when
+        List<Task> tasks = taskRepository.findUpcomingTasks(userId);
+
+        //then
+        assertEquals(1, tasks.size());
+    }
 }

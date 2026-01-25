@@ -27,8 +27,11 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
         @Param("status") TaskStatus status
     );
 
-    @Query("SELECT t FROM Task t WHERE t.user.userId = :userId AND t.priority = :priority ORDER BY t.startDate ASC")
-    List<Task> findTaskWithPriority(@Param("userId") String userId, @Param("priority") String priority);
+    @Query("SELECT t FROM Task t WHERE t.user.userId = :userId AND t.priority = :priority AND t.status = :status ORDER BY t.startDate ASC")
+    List<Task> findTaskWithPriority(@Param("userId") String userId, @Param("priority") String priority, @Param("status") TaskStatus status);
+
+    @Query("SELECT t FROM Task t WHERE t.user.userId = :userId AND t.startDate >= CURRENT_DATE ORDER BY t.startDate ASC")
+    List<Task> findUpcomingTasks(@Param("userId") String userId);
 
     List<Task> findByUserUserId(String userId);
 
