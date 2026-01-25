@@ -1,4 +1,4 @@
-package com.spring.ai.basic;
+/*package com.spring.ai.basic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,24 +29,17 @@ public class McpConfig {
         Map<String, String> envs = new HashMap<>();
         
         // 공통 환경변수
-        String slackBotToken = env.getProperty("SLACK_BOT_TOKEN");
-        String slackTeamId = env.getProperty("SLACK_TEAM_ID");
-        String slackChannelIds = env.getProperty("SLACK_CHANNEL_IDS");
+        String gmailToken = env.getProperty("GMAIL_ACCESS_TOKEN");
+
         
-        if (slackBotToken != null) {
-            envs.put("SLACK_BOT_TOKEN", slackBotToken);
-        }
-        if (slackTeamId != null) {
-            envs.put("SLACK_TEAM_ID", slackTeamId);
-        }
-        if (slackChannelIds != null) {
-            envs.put("SLACK_CHANNEL_IDS", slackChannelIds);
+        if (gmailToken != null) {
+            envs.put("GMAIL_ACCESS_TOKEN", gmailToken);
         }
 
         if (isWindows()) {
             // Windows: cmd.exe /c npx approach
             var winArgs = new ArrayList<>(Arrays.asList(
-                "/c", "npx", "-y", "@modelcontextprotocol/server-slack"));
+                "/c", "npx", "-y", "@infograb/gmail-mcp-server")); 
             
             stdioParams = ServerParameters.builder("cmd.exe")
                     .args(winArgs)
@@ -55,7 +48,7 @@ public class McpConfig {
         } else {
             // Linux/Mac: direct npx approach
             stdioParams = ServerParameters.builder("npx")
-                    .args("-y", "@modelcontextprotocol/server-slack")
+                    .args("@infograb/gmail-mcp-server")
                     .env(envs)
                     .build();
         }
@@ -75,4 +68,4 @@ public class McpConfig {
     private static boolean isWindows() {
         return System.getProperty("os.name").toLowerCase().contains("win");
     }
-}
+}*/
