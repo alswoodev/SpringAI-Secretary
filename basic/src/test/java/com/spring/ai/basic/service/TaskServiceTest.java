@@ -1,6 +1,5 @@
 package com.spring.ai.basic.service;
 
-import com.spring.ai.basic.dto.SecretaryDTOs;
 import com.spring.ai.basic.entity.Task;
 import com.spring.ai.basic.entity.enums.task.TaskStatus;
 import com.spring.ai.basic.repository.TaskRepository;
