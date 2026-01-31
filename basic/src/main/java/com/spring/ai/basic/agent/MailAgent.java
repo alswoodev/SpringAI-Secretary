@@ -27,7 +27,7 @@ public class MailAgent {
                     @Qualifier("workerPrompts") Map<String,String> prompts,
                     ChatMemory chatMemory,
                     McpSyncClient mcpClient) {
-        this.chatClient = builder.defaultToolCallbacks(new SyncMcpToolCallbackProvider(mcpClient)).build();
+        this.chatClient = builder.defaultToolCallbacks(new SyncMcpToolCallbackProvider.Builder().addMcpClient(mcpClient).build()).build();
         this.systemPrompt = prompts.get("mail");
         this.chatMemory = chatMemory;
     }
