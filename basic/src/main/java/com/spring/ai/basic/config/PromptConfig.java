@@ -17,6 +17,8 @@ public class PromptConfig {
     private Resource taskResource;
     @Value("classpath:prompts/worker-mail.st")
     private Resource mailResource;
+    @Value("classpath:prompts/worker-shopping.st")
+    private Resource shoppingResource;
 
     private String loadPrompt(Resource resource) {
         try {
@@ -30,7 +32,8 @@ public class PromptConfig {
     public Map<String, String> workerPrompts(){
          return Map.of(
                  "task", loadPrompt(taskResource),
-                 "mail", loadPrompt(mailResource)
+                 "mail", loadPrompt(mailResource),
+                 "shopping", loadPrompt(shoppingResource)
          );
     }
 }
