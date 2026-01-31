@@ -2,11 +2,8 @@ package com.spring.ai.basic.tool;
 
 import com.spring.ai.basic.dto.SecretaryDTOs;
 import com.spring.ai.basic.entity.ShoppingItem;
-import com.spring.ai.basic.entity.Task;
 import com.spring.ai.basic.service.ShoppingItemService;
-import com.spring.ai.basic.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
