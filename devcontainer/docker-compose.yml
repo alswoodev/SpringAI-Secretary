@@ -2,31 +2,29 @@ version: "3.8"
 
 #Setting MariaDB in Container
 services:
-  mariadb:
-    image: mariadb:11
-    container_name: mariadb
-    restart: unless-stopped
+  pgdbtest:
+    image: ankane/pgvector:latest
+    container_name: pgvectortest
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: springai
-      MARIADB_USER: user
-      MARIADB_PASSWORD: user1234
+      POSTGRES_DB: springai
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user1234
     ports:
-      - "3308:3306"
-    volumes:
-      - mariadb-data:/var/lib/mysql
+      - "5432:5432"
+    restart: unless-stopped
 
-  mariadbtest:
-    image: mariadb:11
-    container_name: mariadbtest
-    restart: unless-stopped
+  pgdb:
+    image: ankane/pgvector:latest
+    container_name: pgvector
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: springai
-      MARIADB_USER: user
-      MARIADB_PASSWORD: user1234
+      POSTGRES_DB: springai
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user1234
     ports:
-      - "3309:3306"
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
   app:
     build: ../basic
     ports:
@@ -39,4 +37,4 @@ services:
       SPRING_DATASOURCE_PASSWORD: user1234
 
 volumes:
-  mariadb-data:
+  pgdata:
