@@ -47,7 +47,15 @@ public class TaskService {
         if(startDate.isAfter(endDate)){
             throw new IllegalArgumentException("Invalid date range: 'from' date is after 'to' date");
         }
-        return taskRepository.save(Task.createTask(userId, title, description, startDate, endDate, type, priority));
+        return taskRepository.save(Task.builder()
+                .userId(userId)
+                .title(title)
+                .description(description)
+                .startDate(startDate)
+                .endDate(endDate)
+                .type(type)
+                .priority(priority)
+                .build());
     }
 
     // Cancel a task

@@ -6,7 +6,6 @@ import com.spring.ai.basic.entity.enums.ShoppingItem.ShoppingItemStatus;
 import com.spring.ai.basic.repository.ShoppingItemRepository;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +21,12 @@ public class ShoppingItemService {
         if(quantity == 0){
             quantity++;
         }
-        return shoppingItemRepository.save(ShoppingItem.createItem(userId, itemName, quantity, ShoppingItemStatus.PENDING, notes));
+        return shoppingItemRepository.save(ShoppingItem.builder()
+                .userId(userId)
+                .itemName(itemName)
+                .quantity(quantity)
+                .notes(notes)
+                .build());
     }
 
     // Retreive all shopping items
