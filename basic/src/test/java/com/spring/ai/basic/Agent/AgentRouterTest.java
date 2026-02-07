@@ -11,7 +11,12 @@ import com.spring.ai.basic.agent.AgentRouter;
 import com.spring.ai.basic.entity.User;
 import com.spring.ai.basic.repository.UserRepository;
 
-/&@SpringBootTest
+/*
+ * WARNING:
+ * This test class triggers actual AI responses and is for verifying model behavior only.
+ * Do NOT use it for real API calls to avoid consuming your API key or incurring charges.
+ */
+/*@SpringBootTest
 public class AgentRouterTest {
     @Autowired
     private AgentRouter agentRouter;
@@ -39,4 +44,4 @@ public class AgentRouterTest {
         String response = agentRouter.route(userMessage, userId, conversationId);
         System.out.println("Response: " + response);
     }
-}
+}*/

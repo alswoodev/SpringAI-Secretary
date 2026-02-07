@@ -11,6 +11,11 @@ import com.spring.ai.basic.agent.AgentOrchestrator;
 import com.spring.ai.basic.entity.User;
 import com.spring.ai.basic.repository.UserRepository;
 
+/*
+ * WARNING:
+ * This test class triggers actual AI responses and is for verifying model behavior only.
+ * Do NOT use it for real API calls to avoid consuming your API key or incurring charges.
+ */
 /*@SpringBootTest
 public class AgentOrchestratorTest {
     @Autowired
