@@ -14,10 +14,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 
 @Component
-public class MailAgent {
+public class MailAgent implements Agent{
 
     private final ChatClient chatClient;
     private final ChatMemory chatMemory;
@@ -32,9 +31,7 @@ public class MailAgent {
         this.chatMemory = chatMemory;
     }
 
-    public String process(String userMessage, String userId) {
-        String conversationId = UUID.randomUUID().toString();
-        
+    public String process(String userMessage, String userId, String conversationId) {
         // Current date in "yyyy-MM-dd (E요일)" format
         String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd (E요일)", Locale.KOREAN));
         // Inject variables into the system prompt
