@@ -70,7 +70,6 @@ To get started with this project, follow the steps below:
 
 
    ```bash
-
    git clone https://github.com/yourusername/Spring-AI-based-Personal-Secretary.git
 
    cd Spring-AI-based-Personal-Secretary
@@ -80,11 +79,9 @@ To get started with this project, follow the steps below:
 2. make `.env` file at classpath
 
    ```bash
-
    GMAIL_ACCESS_TOKEN={your_access_token}
 
    GOOGLE_API_KEY={your_api_key}
-
    ```
 
    you can get google access token for test by following this.
@@ -93,9 +90,9 @@ To get started with this project, follow the steps below:
 
    2. **select below scope**
 
-      - https://www.googleapis.com/auth/gmail.modify
+      - `https://www.googleapis.com/auth/gmail.modify`
 
-      - https://www.googleapis.com/auth/gmail.settings.basic
+      - `https://www.googleapis.com/auth/gmail.settings.basic`
 
    3. **click** `Authorize APIs`
 
@@ -108,13 +105,7 @@ To get started with this project, follow the steps below:
 3. Run database container and application container
 
    ```bash
-
-   cd devcontainer
-
-   docker compose up -d pgdb
-
    docker compose up -d app
-
    ```
 
 
@@ -126,7 +117,7 @@ To get started with this project, follow the steps below:
 Once the application is running, you can interact with the personal secretary via the chat endpoint. Both `userId` and `ConversationId` should follow the **UUID** format.
 
 ```bash
-curl -X POST http://localhost:8080/api/v1/chat \
+curl -X POST http://localhost:8081/api/v1/chat \
      -H "Content-Type: application/json" \
      -H "ConversationId: f47ac10b-58cc-4372-a567-0e02b2c3d479" \
      -d '{

@@ -48,7 +48,7 @@ public class McpConfig {
         } else {
             // Linux/Mac: direct npx approach
             stdioParams = ServerParameters.builder("npx")
-                    .args("@infograb/gmail-mcp-server")
+                    .args("@infograb/gmail-mcp-server@1.0.0")
                     .env(envs)
                     .build();
         }
